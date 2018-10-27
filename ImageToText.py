@@ -47,7 +47,7 @@ def imageToText(imageFileIn):
     # print('dict Results: ', dictResults)
     results = ""
     for key in dictResults:
-        results += dictResults[key]
+        results += key + ": " + dictResults[key] + "\n"
     return results
 
 

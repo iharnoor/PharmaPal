@@ -3,6 +3,7 @@ import os
 from flask import Flask, request, jsonify
 
 from ImageToText import imageToText
+import base64
 
 app = Flask(__name__)
 
@@ -29,7 +30,7 @@ def hello_user(user):
 
 
 # POST
-@app.route('/api/post_some_data', methods=['POST'])
+@app.route('/api/postData', methods=['POST'])
 def get_text_prediction():
     """
     predicts requested text whether it is ham or spam
@@ -38,22 +39,24 @@ def get_text_prediction():
     json = request.get_json()
     print(json)
     if len(json['text']) == 0:
-        return jsonify({'error': 'invalid input'})
+        return 'error invalid input'
 
-    return jsonify({'you sent this': json['text']})
+    image_binary = base64.b64decode(json['text'])
+    with open('image.jpg', 'wb') as f:
+        f.write(image_binary)
+
+    dict = imageToText('image.jpg')
+    return dict
+    # return json['text']
 
 
-@app.route('/getNoteText/<image_name>', methods=['GET', 'POST'])
-def GetNoteText(image_name):
+@app.route('/image', methods=['GET', 'POST'])
+def GetNoteText():
     if request.method == 'POST':
         file = request.files['pic']
-        filename = file.filename
-        print(os.path)
-        file.save(filename)
-        # run Carl's code and store the string returned in a variable
-        # return that string
+        file.save('excedrineTest4.JPG')
 
-        dict = imageToText(image_name)
+        dict = imageToText('excedrineTest4.JPG')
         return dict
         # processImage(filename)
     else:
