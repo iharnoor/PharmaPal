@@ -9,9 +9,10 @@ import nltk
 # imageFileIn = "excedrineTest4.jpg"
 grayImageFileOut = "excedrineTest4.png"
 dictDatabaseFileIn = "dictDatabaseFileObj.txt"
+langEnumerator = {'eng': 0, 'hin': 1, 'chi': 2, 'spn': 3}
 
 
-def imageToText(imageFileIn):
+def imageToText(imageFileIn, lang):
     with open(dictDatabaseFileIn, 'rb') as f:
         dictDatabase = pickle.load(f)
 
@@ -41,15 +42,13 @@ def imageToText(imageFileIn):
             if distance.levenshtein(s.lower(), keyLower) <= 2:
                 dictResults[key] = dictDatabase[key]
 
+    textResults = ""
     for key in dictResults:
-        print(key + ": " + dictResults[key])
+        textResults += dictResults[key][1] + "\n"
 
-    # print('dict Results: ', dictResults)
-    results = ""
-    for key in dictResults:
-        results += key + ": " + dictResults[key] + "\n"
-    return results
+    print(textResults)
+    return textResults
 
 
 if __name__ == '__main__':
-    imageToText('excedrineTest4.jpg')
+    imageToText('excedrineTest4.jpg', 'hin')

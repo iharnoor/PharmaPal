@@ -1,14 +1,14 @@
 import pickle
 
-fileOut = "C:\\Users\Carl Wilhjelm\PycharmProjects\PharmaPal\dictDatabaseFileObj.txt"
+fileOut = "dictDatabaseFileObj.txt"
 
-langEnumerator = {'eng': 0, 'hin': 2, 'chi': 3, 'spn': 4}
+# langEnumerator = {'eng': 0, 'hin': 2, 'chi': 3, 'spn': 4}
 
 databaseDict = {}
 
 databaseDict['Excedrin'] = ["\"Excedrin\": Aspirin/paracetamol/caffeine is a combination drug for the treatment of pain, especially tension headache and migraine.",
-                            "\"एक्सेड्रिन\": एस्पिरिन / पैरासिटामोल / कैफीन दर्द के इलाज के लिए एक संयोजन दवा है, विशेष रूप से तनाव सिरदर्द और माइग्रेन।"
-                            "\"Excedrin\"：阿司匹林/对乙酰氨基酚/咖啡因是一种用于治疗疼痛，特别是紧张性头痛和偏头痛的组合药物。"
+                            "\"एक्सेड्रिन\": एस्पिरिन / पैरासिटामोल / कैफीन दर्द के इलाज के लिए एक संयोजन दवा है, विशेष रूप से तनाव सिरदर्द और माइग्रेन।",
+                            "\"Excedrin\"：阿司匹林/对乙酰氨基酚/咖啡因是一种用于治疗疼痛，特别是紧张性头痛和偏头痛的组合药物。",
                             "\"Excedrin\": la aspirina / paracetamol / cafeína es un medicamento combinado para el tratamiento del dolor, especialmente el dolor de cabeza por tensión y la migraña."
                             ]
 
