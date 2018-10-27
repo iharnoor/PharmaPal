@@ -2,6 +2,8 @@ import os
 
 from flask import Flask, request, jsonify
 
+from ImageToText import imageToText
+
 app = Flask(__name__)
 
 
@@ -41,8 +43,8 @@ def get_text_prediction():
     return jsonify({'you sent this': json['text']})
 
 
-@app.route('/getNoteText', methods=['GET', 'POST'])
-def GetNoteText():
+@app.route('/getNoteText/<image_name>', methods=['GET', 'POST'])
+def GetNoteText(image_name):
     if request.method == 'POST':
         file = request.files['pic']
         filename = file.filename
@@ -50,7 +52,9 @@ def GetNoteText():
         file.save(filename)
         # run Carl's code and store the string returned in a variable
         # return that string
-        return "success"
+
+        dict = imageToText(image_name)
+        return dict
         # processImage(filename)
     else:
         return "Y U NO USE POST?"
