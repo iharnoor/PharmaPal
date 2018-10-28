@@ -30,8 +30,8 @@ def hello_user(user):
 
 
 # POST
-@app.route('/api/postData', methods=['POST'])
-def get_text_prediction():
+@app.route('/api/postData/<lang>', methods=['POST'])
+def get_text_prediction(lang):
     """
     predicts requested text whether it is ham or spam
     :return: json
@@ -45,7 +45,7 @@ def get_text_prediction():
     with open('image.jpg', 'wb') as f:
         f.write(image_binary)
 
-    dict = imageToText('image.jpg')
+    dict = imageToText('image.jpg', lang)
     return dict
     # return json['text']
 
