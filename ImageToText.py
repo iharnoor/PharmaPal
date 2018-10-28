@@ -15,6 +15,7 @@ langEnumerator = {'eng': 0, 'hin': 1, 'chi': 2, 'spn': 3}
 def imageToText(imageFileIn, lang):
     with open(dictDatabaseFileIn, 'rb') as f:
         dictDatabase = pickle.load(f)
+    lang = langEnumerator[lang]
 
     # find all words in original image
     rawText = pytesseract.image_to_string(Image.open(imageFileIn))
@@ -37,16 +38,15 @@ def imageToText(imageFileIn, lang):
         keyLower = key.lower()
         for s in tokens:
             if distance.levenshtein(s.lower(), keyLower) <= 2:
-                dictResults[key] = dictDatabase[key]
+                dictResults[key] = dictDatabase[key][lang]
         for s in processedTokens:
             if distance.levenshtein(s.lower(), keyLower) <= 2:
-                dictResults[key] = dictDatabase[key]
+                dictResults[key] = dictDatabase[key][lang]
 
     textResults = ""
     for key in dictResults:
-        textResults += dictResults[key][1] + "\n"
+        textResults += dictResults[key] + "\n"
 
-    print(textResults)
     return textResults
 
 
