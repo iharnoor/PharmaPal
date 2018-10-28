@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,8 +39,9 @@
                 tools:replace="android:resource" />
         </provider>
 
+        <activity android:name=".MainActivity" />
         <activity android:name=".Translate" />
-        <activity android:name=".AudioActivity"></activity>
+        <activity android:name=".AudioActivity" />
     </application>
 
 </manifest>

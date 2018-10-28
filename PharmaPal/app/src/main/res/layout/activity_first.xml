@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstActivity">
+
+    <Button
+        android:id="@+id/btnEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorPrimary"
+        android:text="DEMO"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/btnSpanish"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@+id/btnEnglish"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorPrimary"
+        android:text="Español"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/btnChinese"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@+id/btnSpanish"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorPrimary"
+        android:text="中文"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/btnHindi"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@id/btnChinese"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorPrimary"
+        android:text="हिंदी"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+
+</RelativeLayout>

@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d20e9821-abbe-4f5b-8ef1-ce63e6c1428f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageToText.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageToText.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/app/src/main/java/com/example/hsingh9/pharmapal/AudioActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/app/src/main/java/com/example/hsingh9/pharmapal/AudioActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/app/src/main/java/com/example/hsingh9/pharmapal/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/app/src/main/java/com/example/hsingh9/pharmapal/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/app/src/main/java/com/example/hsingh9/pharmapal/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/app/src/main/java/com/example/hsingh9/pharmapal/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmaPal/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PharmaPal/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/excedrineTest4.png" beforeDir="false" afterPath="$PROJECT_DIR$/excedrineTest4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image.jpg" afterDir="false" />
     </list>
@@ -16,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ImageToText.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ImageToText.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ImageToText.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+            <state relative-caret-position="323">
+              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -32,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/Naman.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -42,7 +48,7 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file leaf-file-name="image.jpg" pinned="false" current-in-tab="true">
+      <file leaf-file-name="image.jpg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/image.jpg">
           <provider selected="true" editor-type-id="images" />
         </entry>
@@ -90,8 +96,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Naman.py" />
-        <option value="$PROJECT_DIR$/ImageToText.py" />
         <option value="$PROJECT_DIR$/Server.py" />
+        <option value="$PROJECT_DIR$/ImageToText.py" />
       </list>
     </option>
   </component>
@@ -220,14 +226,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12539515" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12539515" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.44444445" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.44444445" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32897604" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -308,9 +313,6 @@
     <entry file="file://$PROJECT_DIR$/excedrineTest4.JPG">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/excedrineTest4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/Lib/site-packages/PIL/Image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="981">
@@ -321,7 +323,7 @@
     <entry file="file://$PROJECT_DIR$/Naman.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -342,21 +344,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ImageToText.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Image_Test.JPG">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/image.jpg">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/excedrineTest4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageToText.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

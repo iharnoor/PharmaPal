@@ -62,28 +62,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
-//                    Locale locSpanish = new Locale("spa", "MEX");
-//                    t1.setLanguage(locSpanish);
-//                    t1.setLanguage(Locale.CHINA);
-//                    Hindi
-                    t1.setLanguage(Locale.forLanguageTag("hin"));
+                    t1.setLanguage(Utils.LOCALE);
                 }
             }
         });
 
-        Button _btnTranslate = findViewById(R.id.btnTranslate);
         Button _btnPost = findViewById(R.id.btnPost);
         Button _btnCapture = findViewById(R.id.btnCapture);
-
-        _btnTranslate.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), Translate.class);
-                        startActivity(intent);
-                    }
-                }
-        );
 
         if (checkPermissions()) {
             //  permissions  granted.
@@ -94,63 +79,62 @@ public class MainActivity extends AppCompatActivity {
             newdir.mkdir();
         }
 
-        _btnCapture.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+//        _btnCapture.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
 //                        dispatchTakePictureIntent();
-                        // and likewise.
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    count++;
-                                    String file = dir + count + ".jpg";
-                                    final File newfile = new File(file);
-                                    newfile.createNewFile();
+        // and likewise.
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    count++;
+                    String file = dir + count + ".jpg";
+                    final File newfile = new File(file);
+                    newfile.createNewFile();
 
-                                    //     Uri outputFileUri = Uri.fromFile(newfile);
-                                    Uri outputFileUri = FileProvider.getUriForFile(MainActivity.this, "com.example.hsingh9.pharmapal.provider", newfile);
-                                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-                                    startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
-                                } catch (IOException ignored) {
-                                }
-                            }
-                        }).start();
-                    }
+                    //     Uri outputFileUri = Uri.fromFile(newfile);
+                    Uri outputFileUri = FileProvider.getUriForFile(MainActivity.this, "com.example.hsingh9.pharmapal.provider", newfile);
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+                    startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+
+                } catch (IOException ignored) {
                 }
-        );
-        _btnPost.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Method 1
-                        JSONObject jsonObject = new JSONObject();
-                        img_path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/" + count + ".jpg";
-                        Bitmap bm = BitmapFactory.decodeFile(img_path);
-                        String base64Img = encode(bm);
-                        try {
-                            jsonObject.put("text", base64Img);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Log.d("Carls json", jsonObject.toString());
-                        outputFromTheServer = push3(url, jsonObject.toString());
+            }
+        }).start();
 
-                        while (true) {
-                            if (Utils.isOutputReady) {
-                                break;
-                            }
-                        }
+//        _btnPost.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+        // Method 1
+        JSONObject jsonObject = new JSONObject();
+        img_path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/" + count + ".jpg";
+        Bitmap bm = BitmapFactory.decodeFile(img_path);
+        String base64Img = encode(bm);
+        try {
+            jsonObject.put("text", base64Img);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("Carls json", jsonObject.toString());
+        outputFromTheServer = push3(url, jsonObject.toString());
 
-                        Intent intent = new Intent(getApplicationContext(), AudioActivity.class);
-                        intent.putExtra("output", outputFromTheServer);
-                        startActivity(intent);
+        while (true) {
+            if (Utils.isOutputReady) {
+                break;
+            }
+        }
+
+        Intent intent = new Intent(getApplicationContext(), AudioActivity.class);
+        intent.putExtra("output", outputFromTheServer);
+        startActivity(intent);
 //                        }
-                    }
-                }
-        );
+//                    }
+//                }
+//        );
 
         Toast.makeText(this, "output: " + outputFromTheServer, Toast.LENGTH_SHORT).show();
     }
