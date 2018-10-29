@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     //        private String url = "127.0.0.1:80/getNoteText/image_Test.JPG";
-    private String url2 = "http://00455e37.ngrok.io/image";
-    private String url = "https://00455e37.ngrok.io/api/postData/" + Utils.LANGUAGE;
+//    private String url2 = "http://00455e37.ngrok.io/image";
+    private String url = "http://2ce4e4c2.ngrok.io/api/postData/" + Utils.LANGUAGE;
     //    private String img_path = "/storage/emulated/0/Pictures/image_Test.JPG";
     public static int count = 0;
     int TAKE_PHOTO_CODE = 0;
