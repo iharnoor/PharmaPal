@@ -19,8 +19,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -31,7 +29,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -40,23 +37,23 @@ import okhttp3.RequestBody;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    //        private String url = "127.0.0.1:80/getNoteText/image_Test.JPG";
-//    private String url2 = "http://00455e37.ngrok.io/image";
-    private String url = "http://2ce4e4c2.ngrok.io/api/postData/" + Utils.LANGUAGE;
-    //    private String img_path = "/storage/emulated/0/Pictures/image_Test.JPG";
-    public static int count = 0;
-    int TAKE_PHOTO_CODE = 0;
-    private String img_path;
-    String outputFromTheServer = "";
-
     public static TextToSpeech t1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static int count = 0;
+    private int TAKE_PHOTO_CODE = 0;
+    private String img_path;
+    private String outputFromTheServer = "";
+    private String mCurrentPhotoPath;
+    private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
+    // Change the URL here
+    private String url = "http://2ce4e4c2.ngrok.io/api/postData/" + Utils.LANGUAGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Activate Text to Speech
         t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -67,24 +64,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button _btnPost = findViewById(R.id.btnPost);
-        Button _btnCapture = findViewById(R.id.btnCapture);
-
         if (checkPermissions()) {
             //  permissions  granted.
         }
+
+        // Create Folder in the device to store the image
         final String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/";
         File newdir = new File(dir);
         if (!newdir.exists()) {
             newdir.mkdir();
         }
 
-//        _btnCapture.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dispatchTakePictureIntent();
-        // and likewise.
+
+        // Store the image in the device after taking the image
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -105,11 +97,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
-//        _btnPost.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-        // Method 1
+        // Store the image as a bitmap
         JSONObject jsonObject = new JSONObject();
         img_path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/" + count + ".jpg";
         Bitmap bm = BitmapFactory.decodeFile(img_path);
@@ -120,8 +108,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.d("Carls json", jsonObject.toString());
-        outputFromTheServer = push3(url, jsonObject.toString());
+        outputFromTheServer = pushToServer(url, jsonObject.toString());
 
+
+        // Wait for camera to take the picture before going to the next activity
         while (true) {
             if (Utils.isOutputReady) {
                 break;
@@ -131,15 +121,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AudioActivity.class);
         intent.putExtra("output", outputFromTheServer);
         startActivity(intent);
-//                        }
-//                    }
-//                }
-//        );
-
         Toast.makeText(this, "output: " + outputFromTheServer, Toast.LENGTH_SHORT).show();
     }
 
-    public String push3(final String url, final String json) {
+    public String pushToServer(final String url, final String json) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -194,30 +179,6 @@ public class MainActivity extends AppCompatActivity {
         return encodedImage;
     }
 
-
-//
-//    public String pushToServer(String imagePath) throws IOException {
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//
-//        StrictMode.setThreadPolicy(policy);
-//        OkHttpClient client = new OkHttpClient();
-//
-//        MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
-//        RequestBody body = RequestBody.create(mediaType, "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"pic\"; filename=" + imagePath + "\r\nContent-Type: image/jpeg\r\n\r\n\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--");
-//        Request request = new Request.Builder()
-//                .url(url2)
-//                .post(body)
-//                .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
-//                .addHeader("cache-control", "no-cache")
-//                .addHeader("Postman-Token", "cfafb477-3e68-477d-8de2-e614f8e7f727")
-//                .build();
-//
-//        Response response = client.newCall(request).execute();
-//        Toast.makeText(this, "WORKS:  " + response.body().string(), Toast.LENGTH_LONG).show();
-//        return "";
-//    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -227,41 +188,9 @@ public class MainActivity extends AppCompatActivity {
             //Bitmap imageBitmap = (Bitmap) extras.get("data");
             //mImageView.setImageBitmap(imageBitmap);
             Log.d("CameraDemo", "Pic saved");
-
             galleryAddPic();
         }
     }
-
-    String mCurrentPhotoPath;
-
-    private File createImageFile() throws IOException {
-        File storageDir = Environment.getExternalStorageDirectory();
-        File image = File.createTempFile(
-                "example",  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        mCurrentPhotoPath = image.getAbsolutePath();
-        return image;
-    }
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            if (photoFile != null) {
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        }
-    }
-
-    public static final int MULTIPLE_PERMISSIONS = 10; // code you want.
 
     String[] permissions = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -306,10 +235,7 @@ public class MainActivity extends AppCompatActivity {
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(mCurrentPhotoPath);
-//        Uri contentUri = Uri.fromFile(f);
-//        Uri contentUri = Uri.fromFile(f);
         Uri contentUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID, f);
-
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }
